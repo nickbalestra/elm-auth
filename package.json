@@ -1,0 +1,25 @@
+{
+  "name": "elm-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickbalestra/elm-auth"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickbalestra/elm-auth/issues"
+  },
+  "homepage": "https://github.com/nickbalestra/elm-auth",
+  "devDependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.15.0"
+  }
+}
