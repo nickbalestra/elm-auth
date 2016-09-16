@@ -16,7 +16,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Routes.
-// require('./routes')(app)
 app.get('/', routes.home)
 app.get('/login/twitter', routes.login.twitter)
 app.get('/login/twitter/return', routes.login.twiiterCallbackURL)
