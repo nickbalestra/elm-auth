@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
-const { passport } = require('./config')
-const { secret, port } = require('./config')
+const { passport, secret, port } = require('./config')
 const routes = require('./routes')
 
 
