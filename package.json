@@ -16,10 +16,14 @@
     "url": "https://github.com/nickbalestra/elm-auth/issues"
   },
   "homepage": "https://github.com/nickbalestra/elm-auth",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "jsonwebtoken": "^7.1.9",
-    "lodash": "^4.15.0"
+    "express-session": "^1.14.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4"
   }
 }
