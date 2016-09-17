@@ -5,3 +5,4 @@ repl-temp-*
 #npm
 node_modules
 .env
+npm-debug.log
