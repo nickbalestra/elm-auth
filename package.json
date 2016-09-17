@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "initDB": "node ./db/schema",
     "start": "node ./server/"
   },
   "repository": {
@@ -16,7 +17,9 @@
     "url": "https://github.com/nickbalestra/elm-auth/issues"
   },
   "homepage": "https://github.com/nickbalestra/elm-auth",
-  "devDependencies": {},
+  "devDependencies": {
+    "rethinkdb-init": "^0.2.2"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
