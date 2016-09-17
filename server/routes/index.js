@@ -1,4 +1,4 @@
-const passport = require('../config').passport
+const passport = require('../passport')
 
 
 const home = (req, res) => {

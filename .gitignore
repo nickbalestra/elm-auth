@@ -4,3 +4,4 @@ elm-stuff/
 repl-temp-*
 #npm
 node_modules
+.env

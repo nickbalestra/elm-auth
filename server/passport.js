@@ -1,16 +1,14 @@
 const passport = require('passport')
 const Strategy = require('passport-twitter').Strategy
-var db = require('./db')
+var db = require('../db') // TODO: move user storage to rethinkDB
 
-const port = "3000"
-const secret = "Elm rocks!"
+//Twitter strategy for use by Passport.
 const twitterAuth = {
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
   callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
 }
 
-//Twitter strategy for use by Passport.
 passport.use(new Strategy(twitterAuth,
   (token, tokenSecret, profile, cb) => {
     db.users.findByUsername(profile.username, function(err, user) {
@@ -30,4 +28,4 @@ passport.deserializeUser((id, cb) => {
   })
 })
 
-module.exports = { secret, passport, port }
+module.exports = passport
