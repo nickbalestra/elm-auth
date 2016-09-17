@@ -1,4 +1,4 @@
-equire('dotenv').config()
+require('dotenv').config()
 const r = require('rethinkdbdash')()
 require('rethinkdb-init')(r)
 
@@ -11,7 +11,6 @@ r.init({
     'users'
   ])
 .then(() => {
-  console.log ('Done')
+  console.log ('💅  RethinkDB Seeded')
   process.exit(0)
 })
-Contact GitHub API Training Shop Blog About

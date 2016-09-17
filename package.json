@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "rdb-seed": "node ./db/schema",
     "start": "node ./server/app"
   },
   "repository": {
