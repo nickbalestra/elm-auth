@@ -1,5 +1,4 @@
 const db = require('./')
-module.exports = { findById, findByUsername, createUser }
 
 function findById(id, cb) {
   process.nextTick(() => {
@@ -27,7 +26,7 @@ function findByUsername(username, cb) {
   })
 }
 
-function createUser(user, cb){
+function insert(user, cb){
   process.nextTick(() => {
     db.table('users')
       .insert(user)
@@ -37,3 +36,5 @@ function createUser(user, cb){
       })
   })
 }
+
+module.exports = { findById, findByUsername, insert }

@@ -1,4 +1,4 @@
-require('dotenv').config()
+equire('dotenv').config()
 const r = require('rethinkdbdash')()
 require('rethinkdb-init')(r)
 
@@ -14,3 +14,4 @@ r.init({
   console.log ('Done')
   process.exit(0)
 })
+Contact GitHub API Training Shop Blog About

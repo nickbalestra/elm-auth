@@ -6,7 +6,7 @@ passport.use(new Strategy(
   (username, password, cb) => {
     users.findByUsername(username, (err, user) => {
       if (err) return cb(err)
-      if (!user) return users.createUser({ username, password }, cb)
+      if (!user) return users.insert({ username, password }, cb)
       if (user.password != password) return cb(null, false)
       return cb(null, user)
     })
