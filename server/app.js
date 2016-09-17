@@ -9,6 +9,7 @@ const RDBStore = require('session-rethinkdb')(session)
 const db = require('../db')
 const app = module.exports = express()
 
+
 // Store session in RethinkDB (table: session)
 const store = new RDBStore(db, { browserSessionsMaxAge: 5000 })
 
@@ -19,6 +20,7 @@ app.use(require('body-parser').urlencoded({ extended: true }))
 app.use(session({cookie, secret, resave: true, saveUninitialized: true, store }))
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 // Routes.
 app.get('/', routes.home)

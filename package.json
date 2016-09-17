@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/nickbalestra/elm-auth",
   "devDependencies": {
-    "rethinkdb-init": "^0.2.2"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -28,6 +27,7 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "rethinkdbdash": "^2.3.23",
     "session-rethinkdb": "^2.0.0"
   }
 }
