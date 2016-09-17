@@ -6,7 +6,7 @@ const { cookie, port, secret } = require('./config')
 const routes = require('./routes')
 const session = require('express-session')
 const RDBStore = require('session-rethinkdb')(session)
-const db = require('../db')
+const db = require('./db')
 const app = module.exports = express()
 
 
