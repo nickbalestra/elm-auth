@@ -27,19 +27,13 @@ function findByUsername(username, cb) {
   })
 }
 
-function createUser(profile, cb){
+function createUser(user, cb){
   process.nextTick(() => {
-    const newUser = {
-      username: profile.username,
-      name: profile.displayName,
-      granted: false,
-    }
-
     db.table('users')
-      .insert(newUser)
+      .insert(user)
       .run()
       .then((dbResponse) => {
-        cb(null, Object.assign(newUser, {id: dbResponse.generated_keys[0]}))
+        cb(null, Object.assign(user, {id: dbResponse.generated_keys[0]}))
       })
   })
 }

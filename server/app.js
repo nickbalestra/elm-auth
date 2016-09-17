@@ -22,8 +22,7 @@ app.use(passport.session())
 
 // Routes.
 app.get('/', routes.home)
-app.get('/login/twitter', routes.login.twitter)
-app.get('/login/twitter/return', routes.login.twiiterCallbackURL)
+app.post('/login', routes.login)
 
 // Start express.
 if (!module.parent) {

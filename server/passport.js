@@ -1,19 +1,13 @@
 const passport = require('passport')
-const Strategy = require('passport-twitter').Strategy
+const Strategy = require('passport-local').Strategy
 const users = require('../db/users')
 
-//Twitter strategy for use by Passport.
-const twitterAuth = {
-  consumerKey: process.env.CONSUMER_KEY,
-  consumerSecret: process.env.CONSUMER_SECRET,
-  callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
-}
-
-passport.use(new Strategy(twitterAuth,
-  (token, tokenSecret, profile, cb) => {
-    users.findByUsername(profile.username, (err, user) => {
+passport.use(new Strategy(
+  (username, password, cb) => {
+    users.findByUsername(username, (err, user) => {
       if (err) return cb(err)
-      if (!user) return users.createUser(profile, cb)
+      if (!user) return users.createUser({ username, password }, cb)
+      if (user.password != password) return cb(null, false)
       return cb(null, user)
     })
   }
