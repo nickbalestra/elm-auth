@@ -17,10 +17,10 @@
     "url": "https://github.com/nickbalestra/elm-auth/issues"
   },
   "homepage": "https://github.com/nickbalestra/elm-auth",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
