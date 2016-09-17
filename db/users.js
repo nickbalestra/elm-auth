@@ -1,45 +1,22 @@
-const db = require('./')
-module.exports = { findById, findByUsername, createUser }
+const _ = require('lodash/fp')
 
-function findById(id, cb) {
-  process.nextTick(() => {
-    db.table('users')
-    .get(id)
-    .run()
-    .then( user => {
-      cb(null, user)
-    })
-    .error(() => {
-      cb(new Error('User ' + id + ' does not exist'))
-    })
-  })
+let users = [
+  { id: 1, username: 'John', password: 'Doe'}
+]
+
+function findByUsername(username) {
+  return _.find({ username }, users)
 }
 
-function findByUsername(username, cb) {
-  process.nextTick(() => {
-    db.table('users')
-      .filter({ username })
-      .run()
-      .then(results => {
-        if (results.length > 0) return cb(null, results[0])
-        return cb(null, null)
-      })
-  })
+function insert(user) {
+  const newUser = {
+    username: user.username,
+    password: user.password,
+    id: _.max(users, 'id').id + 1
+  }
+
+  users = users.concat(newUser)
+  return _.last(users)
 }
 
-function createUser(profile, cb){
-  process.nextTick(() => {
-    const newUser = {
-      username: profile.username,
-      name: profile.displayName,
-      granted: false,
-    }
-
-    db.table('users')
-      .insert(newUser)
-      .run()
-      .then((dbResponse) => {
-        cb(null, Object.assign(newUser, {id: dbResponse.generated_keys[0]}))
-      })
-  })
-}
+module.exports = { findByUsername, insert }
