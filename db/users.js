@@ -1,34 +1,43 @@
-const _ = require('lodash/fp')
+const db = require('./')
+module.exports = { findById, findByUsername, createUser }
 
-let records = [
-  { id: 1, username: 'nickbalestra', name: 'Nick Balestra', granted: true }
-]
-
-exports.findById = (id, cb) => {
+function findById(id, cb) {
   process.nextTick(() => {
-    const record = _.find({ id }, records)
-    if (record) cb(null, record)
-    else cb(new Error('User ' + id + ' does not exist'))
+    db.table('users')
+    .get(id)
+    .run()
+    .then( user => {
+      cb(null, user)
+    })
+    .error(() => {
+      cb(new Error('User ' + id + ' does not exist'))
+    })
   })
 }
 
-exports.findByUsername = (username, cb) => {
+function findByUsername(username, cb) {
   process.nextTick(() => {
-    const record = _.find({ username }, records)
-    if (record) return cb(null, record)
-    return cb(null, null)
-  });
+    db.table('users')
+      .filter({ username })
+      .run()
+      .then(results => {
+        if (results.length > 0) return cb(null, results[0])
+        return cb(null, null)
+      })
+  })
 }
 
-exports.createUser = (profile, cb) => {
+function createUser(profile, cb){
   process.nextTick(() => {
     const newUser = {
       username: profile.username,
       name: profile.displayName,
       granted: false,
-      id: _.max(records, 'id').id + 1
     }
-    records = records.concat(newUser)
-    return cb(null, newUser)
+
+    db.table('users')
+      .insert(newUser)
+      .run()
+      .then(() => cb(null, newUser))
   })
 }

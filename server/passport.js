@@ -1,6 +1,6 @@
 const passport = require('passport')
 const Strategy = require('passport-twitter').Strategy
-var db = require('../db') // TODO: move user storage to rethinkDB
+const users = require('../db/users')
 
 //Twitter strategy for use by Passport.
 const twitterAuth = {
@@ -11,9 +11,9 @@ const twitterAuth = {
 
 passport.use(new Strategy(twitterAuth,
   (token, tokenSecret, profile, cb) => {
-    db.users.findByUsername(profile.username, function(err, user) {
+    users.findByUsername(profile.username, (err, user) => {
       if (err) return cb(err)
-      if (!user) return db.users.createUser(profile, cb)
+      if (!user) return users.createUser(profile, cb)
       return cb(null, user)
     })
   }
@@ -22,7 +22,7 @@ passport.use(new Strategy(twitterAuth,
 // Passport authenticated session persistence.
 passport.serializeUser((user, cb) => cb(null, user.id));
 passport.deserializeUser((id, cb) => {
-  db.users.findById(id, (err, user) => {
+  users.findById(id, (err, user) => {
     if (err) return cb(err)
     cb(null, user)
   })

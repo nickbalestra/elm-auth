@@ -1,5 +1,3 @@
-var db = require('../db')
-
 const port = "3000"
 const secret = "Elm rocks!"
 const cookie = { maxAge: 30000 }
