@@ -38,6 +38,8 @@ function createUser(profile, cb){
     db.table('users')
       .insert(newUser)
       .run()
-      .then(() => cb(null, newUser))
+      .then((dbResponse) => {
+        cb(null, Object.assign(newUser, {id: dbResponse.generated_keys[0]}))
+      })
   })
 }
