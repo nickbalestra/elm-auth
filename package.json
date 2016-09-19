@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "rdb-seed": "node ./db/schema",
+    "rdb-seed": "node ./server/db/schema",
     "start": "node ./server/app",
     "dev": "webpack-dev-server --port 3001 --hot --inline --content-base src/",
     "build": "rimraf dist && webpack",
@@ -45,6 +45,7 @@
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.10.0",
     "postcss-loader": "^0.13.0",
+    "rethinkdb-init": "^0.2.2",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",

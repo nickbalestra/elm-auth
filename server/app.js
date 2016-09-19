@@ -8,12 +8,15 @@ const session = require('express-session')
 const RDBStore = require('session-rethinkdb')(session)
 const db = require('./db')
 const app = module.exports = express()
+const path = require('path');
 
 
 // Store session in RethinkDB (table: session)
 const store = new RDBStore(db, { browserSessionsMaxAge: 5000 })
 
 // App-level middlewares for logging, parsing, and session handling.
+const publicPath = path.join(__dirname, '/../dist');
+app.use(express.static(publicPath));
 app.use(require('morgan')('combined'))
 app.use(require('cookie-parser')())
 app.use(require('body-parser').urlencoded({ extended: true }))
@@ -23,12 +26,15 @@ app.use(passport.session())
 
 
 // Routes.
-app.get('/', routes.home)
+app.get('/home', routes.home)
 app.post('/login', routes.login)
+app.get('*', (req, res) =>
+  res.sendFile(path.resolve(publicPath, 'index.html'))
+  )
 
 // Start express.
 if (!module.parent) {
-  app.listen(port, () => {
+  app.listen(port, err => {
     if (err) console.log(err)
     console.log(`⚡  Express started on port ${port}`)
   })

@@ -7,7 +7,7 @@ const home = (req, res) => {
 }
 
 const login = (req, res, next) => {
-  passport.authenticate('local')(req, res, () => res.redirect('/'))
+  passport.authenticate('local')(req, res, () => res.redirect('/home'))
 }
 
 module.exports = { home, login }
