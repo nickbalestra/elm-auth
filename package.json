@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "rdb-seed": "node ./db/schema",
-    "start": "node ./server/app"
+    "start": "node ./server/app",
+    "dev": "webpack-dev-server --port 3001 --hot --inline --content-base src/",
+    "build": "rimraf dist && webpack",
+    "postinstall": "elm-package install"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,6 @@
     "url": "https://github.com/nickbalestra/elm-auth/issues"
   },
   "homepage": "https://github.com/nickbalestra/elm-auth",
-  "devDependencies": {},
   "dependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
@@ -30,5 +32,24 @@
     "passport-local": "^1.0.0",
     "rethinkdbdash": "^2.3.23",
     "session-rethinkdb": "^2.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.25.0",
+    "elm": "^0.17.1",
+    "elm-hot-loader": "^0.3.4",
+    "elm-webpack-loader": "^3.0.6",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.10.0",
+    "postcss-loader": "^0.13.0",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1",
+    "webpack-merge": "^0.14.1"
   }
 }

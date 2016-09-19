@@ -28,7 +28,8 @@ app.post('/login', routes.login)
 
 // Start express.
 if (!module.parent) {
-  app.listen(port, () =>
+  app.listen(port, () => {
+    if (err) console.log(err)
     console.log(`⚡  Express started on port ${port}`)
-  )
+  })
 }
